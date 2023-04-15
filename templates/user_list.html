@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Lista de Usuários</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Projetos</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <ul>
+        {% for project in user.projects.all %}
+          <li>{{ project.name }}</li>
+        {% empty %}
+          <li>Nenhum projeto associado</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

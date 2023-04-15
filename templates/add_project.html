@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Adicionar projeto</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="name">Nome:</label>
+    <input type="text" name="name" required><br><br>
+    <label for="description">Descrição:</label>
+    <textarea name="description" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit">Adicionar projeto</button>
+  </form>
+{% endblock %}
