@@ -6,6 +6,31 @@ from .serializers import UserSerializer, ProjectSerializer, AssociateSerializer,
 from rest_framework import generics
 
 
+def home(request):
+    return render(request, 'home.html')
+
+def user_create(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')
+    else:
+        form = UserForm()
+
+    return render(request, 'user_create.html', {'form': form})
+
+
+def project_create(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'project_create.html', {'form': form})
 
 def user_add(request):
     if request.method == 'POST':
@@ -16,12 +41,12 @@ def user_add(request):
     else:
         form = UserForm()
 
-    return render(request, 'core/user_form.html', {'form': form})
+    return render(request, 'user_form.html', {'form': form})
 
 
 def user_list(request):
     users = User.objects.all()
-    return render(request, 'core/user_list.html', {'users': users})
+    return render(request, 'user_list.html', {'users': users})
 
 
 def project_add(request):
@@ -33,12 +58,12 @@ def project_add(request):
     else:
         form = ProjectForm()
 
-    return render(request, 'core/project_form.html', {'form': form})
+    return render(request, 'project_form.html', {'form': form})
 
 
 def project_list(request):
     projects = Project.objects.all()
-    return render(request, 'core/project_list.html', {'projects': projects})
+    return render(request, 'project_list.html', {'projects': projects})
 
 
 def user_project_associate(request):
@@ -60,7 +85,7 @@ def user_project_associate(request):
     else:
         form = AssociateForm()
 
-    return render(request, 'core/user_project_associate.html', {'form': form})
+    return render(request, 'user_project_associate.html', {'form': form})
 
 ##### API VIEWS #####
 

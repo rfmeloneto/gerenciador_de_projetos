@@ -12,6 +12,12 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def add_project(self, project):
+        through_defaults = {'id': None}
+        self.projects.add(project, through_defaults=through_defaults)
+    
+
 
 
 class Project(models.Model):
@@ -24,3 +30,8 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def add_user(self, user):
+        through_defaults = {'id': None}
+        self.users.add(user, through_defaults=through_defaults)
+
