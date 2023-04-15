@@ -6,67 +6,47 @@ from .serializers import UserSerializer, ProjectSerializer, AssociateSerializer,
 from rest_framework import generics
 
 
-def home(request):
+def home(request):  #View ok
     return render(request, 'home.html')
 
-def user_create(request):
+def user_create(request):  #View ok
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('user_list')
+       form = UserForm(request.POST)
+       if form.is_valid():
+           user = form.save(commit=False)
+           user.save()
+           return redirect('user_list')
     else:
-        form = UserForm()
+       form = UserForm()
 
     return render(request, 'user_create.html', {'form': form})
 
 
-def project_create(request):
+def project_create(request):  #View ok
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            project.save()
             return redirect('project_list')
     else:
         form = ProjectForm()
 
     return render(request, 'project_create.html', {'form': form})
 
-def user_add(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('user_list')
-    else:
-        form = UserForm()
 
-    return render(request, 'user_form.html', {'form': form})
-
-
-def user_list(request):
+def user_list(request): #View ok
     users = User.objects.all()
     return render(request, 'user_list.html', {'users': users})
 
 
-def project_add(request):
-    if request.method == 'POST':
-        form = ProjectForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('project_list')
-    else:
-        form = ProjectForm()
 
-    return render(request, 'project_form.html', {'form': form})
-
-
-def project_list(request):
+def project_list(request): #View ok
     projects = Project.objects.all()
     return render(request, 'project_list.html', {'projects': projects})
 
 
-def user_project_associate(request):
+def user_project_associate(request):  #View ok
     if request.method == 'POST':
         form = AssociateForm(request.POST)
         if form.is_valid():

@@ -4,18 +4,18 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
-    projects = models.ManyToManyField('Project', related_name='users_enrroled', blank=True)
+    #projects = models.ManyToManyField('Project', related_name='users_enrroled', blank=True)
 
-    def clean(self):
-        if self.projects.count() > 3:
-            raise ValidationError('Um usuário não pode ter mais de 3 projetos.')
+    #def clean(self):
+    #    if self.projects.count() > 3:
+    #        raise ValidationError('Um usuário não pode ter mais de 3 projetos.')
 
     def __str__(self):
         return self.name
     
-    def add_project(self, project):
-        through_defaults = {'id': None}
-        self.projects.add(project, through_defaults=through_defaults)
+    #def add_project(self, project):
+     #   through_defaults = {'id': None}
+      #  self.projects.add(project, through_defaults=through_defaults)
     
 
 

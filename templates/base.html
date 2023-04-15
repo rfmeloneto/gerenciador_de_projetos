@@ -6,7 +6,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">Projeto Manager</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Gerenciador de Projetos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,6 +20,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'user_create' %}">Novo usuário</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_project_associate' %}">Alocar Usuários a Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_list' %}">Listar Usuários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'project_list' %}">Listar Projetos</a>
                 </li>
             </ul>
         </div>

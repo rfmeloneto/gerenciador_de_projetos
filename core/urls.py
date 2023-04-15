@@ -3,13 +3,11 @@ from . import views
 
 urlpatterns = [
     path ('', views.home, name='home'),
-    path('user/add/', views.user_add, name='user_add'),
-    path('user/', views.user_list, name='user_list'),
-    path('project/add/', views.project_add, name='project_add'),
-    path('project/', views.project_list, name='project_list'),
-    path('user_project/associate/', views.user_project_associate, name='user_project_associate'),
-    path('project/create/', views.project_create, name='project_create'),
-    path('user/create/', views.user_create, name='user_create'),
+    path('user/', views.user_list, name='user_list'), #url ok views ok
+    path('project/', views.project_list, name='project_list'), #url ok views ok
+    path('user_project/associate/', views.user_project_associate, name='user_project_associate'), #url ok views ok
+    path('project/create/', views.project_create, name='project_create'), #url ok views ok
+    path('user/create/', views.user_create, name='user_create'),# url ok views ok
 
 
     # API URLs
