@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nome</th>
+        <th scope="col">Projetos</th>
         <th scope="col">E-mail</th>
         <th scope="col">Projetos</th>
       </tr>
@@ -18,9 +18,9 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>
-            {% if user.users_projects.exists %}
+            {% if user.projects.exists %}
               <ul>
-                {% for project in user.users_projects.all %}
+                {% for project in user.projects.all %}
                   <li>{{ project.name }}</li>
                 {% endfor %}
               </ul>

@@ -22,12 +22,26 @@ def user_create(request):  #View ok
     return render(request, 'user_create.html', {'form': form})
 
 
-def project_create(request):  #View ok
+'''
+def project_create(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
             project = form.save(commit=False)
-            project.save()
+            project.save()  
+            form.save_m2m()  
+            return redirect('project_list')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'project_create.html', {'form': form})
+'''
+def project_create(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            
             return redirect('project_list')
     else:
         form = ProjectForm()
@@ -35,9 +49,11 @@ def project_create(request):  #View ok
     return render(request, 'project_create.html', {'form': form})
 
 
+
 def user_list(request): #View ok
     users = User.objects.all()
-    return render(request, 'user_list.html', {'users': users})
+    projects = Project.objects.all()
+    return render(request, 'user_list.html', {'users': users, 'projects':projects})
 
 
 
@@ -45,7 +61,7 @@ def project_list(request): #View ok
     projects = Project.objects.all()
     return render(request, 'project_list.html', {'projects': projects})
 
-
+'''
 def user_project_associate(request):  #View ok
     if request.method == 'POST':
         form = AssociateForm(request.POST)
@@ -66,6 +82,20 @@ def user_project_associate(request):  #View ok
         form = AssociateForm()
 
     return render(request, 'user_project_associate.html', {'form': form})
+'''
+def user_project_associate(request):
+    if request.method == 'POST':
+        form = AssociateForm(request.POST)
+        if form.is_valid():
+            project = form.cleaned_data['project']
+            users = form.cleaned_data['users']
+            for user in users:
+                project.add_user(user)
+            return redirect('project_list')
+    else:
+        form = AssociateForm()
+    return render(request, 'user_project_associate.html', {'form': form})
+
 
 ##### API VIEWS #####
 

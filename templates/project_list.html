@@ -5,7 +5,7 @@
   <ul>
     {% for project in projects %}
       <li>
-        <a href="{% url 'project_detail' project.pk %}">{{ project.name }}</a>
+        {{ project.name }}
       </li>
     {% empty %}
       <li>Nenhum projeto encontrado.</li>

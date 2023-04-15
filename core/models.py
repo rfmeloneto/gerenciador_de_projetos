@@ -24,14 +24,13 @@ class Project(models.Model):
     name = models.CharField(max_length=100, unique=True)
     users = models.ManyToManyField('User', related_name='users_projects', blank=True)
 
-    def clean(self):
-        if self.users.count() > 5:
-            raise ValidationError('Um projeto não pode ter mais de 5 usuários.')
+        
 
     def __str__(self):
         return self.name
     
     def add_user(self, user):
-        through_defaults = {'id': None}
-        self.users.add(user, through_defaults=through_defaults)
+        self.users.add(user)
+        if self.users.count() > 5:
+            raise ValidationError('Um projeto não pode ter mais de 5 usuários.')
 
