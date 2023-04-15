@@ -4,7 +4,7 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
-    projects = models.ManyToManyField('Project', related_name='users', blank=True)
+    projects = models.ManyToManyField('Project', related_name='users_enrroled', blank=True)
 
     def clean(self):
         if self.projects.count() > 3:
@@ -16,7 +16,7 @@ class User(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    users = models.ManyToManyField('User', related_name='projects', blank=True)
+    users = models.ManyToManyField('User', related_name='users_projects', blank=True)
 
     def clean(self):
         if self.users.count() > 5:

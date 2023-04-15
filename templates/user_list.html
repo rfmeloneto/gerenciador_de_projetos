@@ -2,28 +2,34 @@
 
 {% block content %}
   <h1>Lista de Usuários</h1>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Projetos</th>
-    </tr>
-    {% for user in users %}
-    <tr>
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>
-        <ul>
-        {% for project in user.projects.all %}
-          <li>{{ project.name }}</li>
-        {% empty %}
-          <li>Nenhum projeto associado</li>
-        {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    {% endfor %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Projetos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user_list %}
+        <tr>
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            {% if user.projects.exists %}
+              <ul>
+                {% for project in user.projects.all %}
+                  <li>{{ project.name }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              Sem projetos
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
   </table>
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ project.name }}</h1>
+
+  <p><strong>Membros do projeto:</strong></p>
+  <ul>
+    {% for user in project.users.all %}
+      <li>{{ user.name }}</li>
+    {% empty %}
+      <li>Nenhum membro encontrado.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'project_update' pk=project.pk %}">Editar</a>
+  <a href="{% url 'project_delete' pk=project.pk %}">Excluir</a>
+{% endblock %}
