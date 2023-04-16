@@ -106,6 +106,7 @@ class ProjectSearchAPIView(generics.ListAPIView):
         if name:
             queryset = queryset.filter(name__icontains=name)
         return queryset
+    
 class UserDetailAPIView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
