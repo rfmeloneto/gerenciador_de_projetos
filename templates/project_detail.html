@@ -5,13 +5,11 @@
 
   <p><strong>Membros do projeto:</strong></p>
   <ul>
-    {% for user in project.users.all %}
-      <li>{{ user.name }}</li>
+    {% for project in user_project.users.all %}
+      <li>{{ project.name }}</li>
     {% empty %}
       <li>Nenhum membro encontrado.</li>
     {% endfor %}
   </ul>
 
-  <a href="{% url 'project_update' pk=project.pk %}">Editar</a>
-  <a href="{% url 'project_delete' pk=project.pk %}">Excluir</a>
 {% endblock %}

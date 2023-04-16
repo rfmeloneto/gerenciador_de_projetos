@@ -41,7 +41,6 @@ def project_create(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save() 
-            
             return redirect('project_list')
     else:
         form = ProjectForm()
@@ -52,37 +51,15 @@ def project_create(request):
 
 def user_list(request): #View ok
     users = User.objects.all()
-    projects = Project.objects.all()
-    return render(request, 'user_list.html', {'users': users, 'projects':projects})
+    return render(request, 'user_list.html', {'users': users,})
 
 
 
 def project_list(request): #View ok
     projects = Project.objects.all()
-    return render(request, 'project_list.html', {'projects': projects})
+    return render(request, 'project_list.html', {'projects': projects,})
 
-'''
-def user_project_associate(request):  #View ok
-    if request.method == 'POST':
-        form = AssociateForm(request.POST)
-        if form.is_valid():
-            user_id = form.cleaned_data['user_id']
-            project_id = form.cleaned_data['project_id']
-            user = User.objects.get(pk=user_id)
-            project = Project.objects.get(pk=project_id)
 
-            if user.projects.count() >= 3:
-                form.add_error(None, 'Este usuário já está em 3 projetos.')
-            elif project.users.count() >= 5:
-                form.add_error(None, 'Este projeto já tem 5 usuários.')
-            else:
-                user.projects.add(project)
-                return redirect('user_list')
-    else:
-        form = AssociateForm()
-
-    return render(request, 'user_project_associate.html', {'form': form})
-'''
 def user_project_associate(request):
     if request.method == 'POST':
         form = AssociateForm(request.POST)
