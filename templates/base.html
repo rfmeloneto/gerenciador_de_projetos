@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">Gerenciador de Projetos</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <a class="navbar-brand text-primary" href="{% url 'home' %}">Gerenciador de Projetos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,19 +16,19 @@
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'project_create' %}">Novo projeto</a>
+                    <a class="nav-link" href="{% url 'project_create' %}">| Novo projeto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_create' %}">Novo usuário</a>
+                    <a class="nav-link" href="{% url 'user_create' %}">| Novo usuário</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_project_associate' %}">Alocar Usuários a Projetos</a>
+                    <a class="nav-link" href="{% url 'user_project_associate' %}">| Alocar Usuários a Projetos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_list' %}">Listar Alocação</a>
+                    <a class="nav-link" href="{% url 'user_list' %}">| Listar Alocação</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'project_list' %}">Listar Projetos</a>
+                    <a class="nav-link" href="{% url 'project_list' %}">| Datalhar Projetos</a>
                 </li>
             </ul>
         </div>

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Deletar Projeto{% endblock title %}
 {% block content %}
- <h3>Tem certeza que quer excluir o projeto {{project.name}}? </h3>
- <form method = "POST">
+ <h1 class="text-center">Tem certeza que quer excluir o projeto {{project.name}}? </h1>
+ <form method = "POST" class="d-flex justify-content-center">
     {% csrf_token %}
-    <button type = "submit"> Excluir Projeto</button>
+    <button class="btn-danger rounded m-5" type = "submit"> Excluir Projeto</button>
+    <a class="m-5" href="{% url 'project_list' %}"> Cancelar </a>
 </form>
 {% endblock content %}

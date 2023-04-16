@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% block title %}Alocar{% endblock title %}
 {% block content %}
-  <h1>Associar usuário a projeto</h1>
+  <h1 class="text-center">Associar usuário a projeto</h1>
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Associar</button>
+    <button class="btn-primary rounded" type="submit">Associar</button>
   </form>
 {% endblock %}
