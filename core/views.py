@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
-from .forms import UserForm, ProjectForm, AssociateForm
-from .models import User, Project
-from .models import User, Project
-from .serializers import UserSerializer, ProjectSerializer
+from django.shortcuts import redirect, render
 from rest_framework import generics
+
+from .forms import AssociateForm, ProjectForm, UserForm
+from .models import Project, User
+from .serializers import ProjectSerializer, UserSerializer
 
 
 def home(request):  #View ok
@@ -70,6 +70,14 @@ def edit_project(request,id):
         form = ProjectForm(instance=project)
     return render(request, 'edit_project.html', {'form': form})
 
+def delete_project(request,id):
+    project= Project.objects.get(id=id)
+    if request.method == 'POST':
+            project.delete()
+            return redirect('project_list')
+    else:
+        form = ProjectForm(instance=project)
+    return render(request, 'delete_project.html', {'project': project})
 
 ##### API VIEWS #####
 

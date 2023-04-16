@@ -34,6 +34,7 @@
           {% endif %}
         </td>
         <td><a type="submit" href = {% url 'edit_project' project.id %}> Editar </a></td>
+        <td><a type="submit" href = {% url 'delete_project' project.id %} > Excluir </a></td>
       </tr>
       {% endfor %}
     </tbody>

@@ -9,6 +9,7 @@ urlpatterns = [
     path('project/create/', views.project_create, name='project_create'), #url ok views ok
     path('user/create/', views.user_create, name='user_create'),# url ok views ok
     path('project/edit/<int:id>/', views.edit_project, name='edit_project'), #url ok views ok
+    path('project/delete/<int:id>/', views.delete_project, name='delete_project'), #url ok views ok
 
 
     # API URLs
