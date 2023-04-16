@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm, ProjectForm, AssociateForm
 from .models import User, Project
 from .models import User, Project
-from .serializers import UserSerializer, ProjectSerializer, AssociateSerializer, DisassociateSerializer
+from .serializers import UserSerializer, ProjectSerializer
 from rest_framework import generics
 
 
@@ -22,20 +22,6 @@ def user_create(request):  #View ok
     return render(request, 'user_create.html', {'form': form})
 
 
-'''
-def project_create(request):
-    if request.method == 'POST':
-        form = ProjectForm(request.POST)
-        if form.is_valid():
-            project = form.save(commit=False)
-            project.save()  
-            form.save_m2m()  
-            return redirect('project_list')
-    else:
-        form = ProjectForm()
-
-    return render(request, 'project_create.html', {'form': form})
-'''
 def project_create(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
@@ -73,6 +59,17 @@ def user_project_associate(request):
         form = AssociateForm()
     return render(request, 'user_project_associate.html', {'form': form})
 
+def edit_project(request,id):
+    project= Project.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm(instance=project)
+    return render(request, 'edit_project.html', {'form': form})
+
 
 ##### API VIEWS #####
 
@@ -106,25 +103,4 @@ class ProjectSearchAPIView(generics.ListAPIView):
         if name:
             queryset = queryset.filter(name__icontains=name)
         return queryset
-    
-class UserDetailAPIView(generics.RetrieveAPIView):
-    serializer_class = UserSerializer
-    queryset = User.objects.all()
 
-class ProjectDetailAPIView(generics.RetrieveAPIView):
-    serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
-
-class UserProjectAssociateAPIView(generics.UpdateAPIView):
-    serializer_class = AssociateSerializer
-    queryset = Project.objects.all()
-
-class UserProjectDisassociateAPIView(generics.UpdateAPIView):
-    serializer_class = DisassociateSerializer
-    queryset = Project.objects.all()
-
-class UserCreateAPIView(generics.CreateAPIView):
-    serializer_class = UserSerializer
-
-class ProjectCreateAPIView(generics.CreateAPIView):
-    serializer_class = ProjectSerializer

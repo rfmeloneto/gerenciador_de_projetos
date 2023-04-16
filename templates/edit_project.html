@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
-
 {% block content %}
-  <h1>Atualizar Projeto</h1>
-  <form method="post">
+
+<form action="POST">
+    Atualizar Projeto
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form.as_p}}
     <button type="submit">Atualizar</button>
-  </form>
-{% endblock %}
+</form>
+
+
+{% endblock content %}

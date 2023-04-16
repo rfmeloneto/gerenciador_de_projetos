@@ -12,12 +12,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Project
-        fields = ['id', 'name', 'users']
-        
-class AssociateSerializer(serializers.Serializer):
-    project_id = serializers.IntegerField()
-
-
-class DisassociateSerializer(serializers.Serializer):
-    user_id = serializers.IntegerField()
+        fields = ['id', 'name', 'users', 'descricao', 'status', 'setor']
+ 
 

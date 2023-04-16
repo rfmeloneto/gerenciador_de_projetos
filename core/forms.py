@@ -13,20 +13,14 @@ class UserForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['name']
+        fields = ['name','descricao','status','setor']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'setor': forms.Select(attrs={'class': 'form-control'}),
         }
-'''
-class AssociateForm(forms.ModelForm):
-    class Meta:
-        model = Project
-        fields = ['users', 'name']
-        widgets = {
-            'users': forms.CheckboxSelectMultiple(),
-            'name': forms.CheckboxSelectMultiple(),
-        }
-'''
+
 class AssociateForm(forms.ModelForm):
 
     project = forms.ModelChoiceField(queryset=Project.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))

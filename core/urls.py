@@ -8,17 +8,12 @@ urlpatterns = [
     path('user_project/associate/', views.user_project_associate, name='user_project_associate'), #url ok views ok
     path('project/create/', views.project_create, name='project_create'), #url ok views ok
     path('user/create/', views.user_create, name='user_create'),# url ok views ok
+    path('project/edit/<int:id>/', views.edit_project, name='edit_project'), #url ok views ok
 
 
     # API URLs
     path('api/user/list/', views.UserListAPIView.as_view(), name='api_user_list'),
     path('api/user/search/', views.UserSearchAPIView.as_view(), name='api_user_search'),
-    path('api/user/create/', views.UserCreateAPIView.as_view(), name='api_user_create'),
-    path('api/user/<int:pk>/', views.UserDetailAPIView.as_view(), name='api_user_detail'),
-    path('api/user_project/associate/', views.UserProjectAssociateAPIView.as_view(), name='api_user_project_associate'),
-    path('api/user_project/disassociate/', views.UserProjectDisassociateAPIView.as_view(), name='api_user_project_disassociate'),
     path('api/project/list/', views.ProjectListAPIView.as_view(), name='api_project_list'),
     path('api/project/search/', views.ProjectSearchAPIView.as_view(), name='api_project_search'),
-    path('api/project/create/', views.ProjectCreateAPIView.as_view(), name='api_project_create'),
-    path('api/project/<int:pk>/', views.ProjectDetailAPIView.as_view(), name='api_project_detail'),
 ]

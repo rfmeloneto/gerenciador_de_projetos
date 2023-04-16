@@ -7,7 +7,11 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Projeto</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Status</th>
+        <th scope="col">Setor</th>
         <th scope="col">Usuários</th>
+        <th scope="col">Editar</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +19,9 @@
       <tr>
         <th scope="row">{{ project.id }}</th>
         <td>{{ project.name }}</td>
+        <td>{{project.descricao}}</td>
+          <td>{{project.status}}</td>
+          <td>{{project.setor}}</td>
         <td>
           {% if project.users.exists %}
           <ul>
@@ -26,6 +33,7 @@
           Projeto sem equipe
           {% endif %}
         </td>
+        <td><a type="submit" href = {% url 'edit_project' project.id %}> Editar </a></td>
       </tr>
       {% endfor %}
     </tbody>
