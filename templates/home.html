@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
 {% block title %}Home{% endblock title %}
 {% block content %}
-  <h1 class="text-center">Bem-vindo ao Gerenciador de Projetos</h1>
-
+  <div class="d-flex justify-content-center align-items-center">
+  <h1 class="text-center text-shadow" style="text-shadow: 1px 1px">Bem-vindo ao Gerenciador de Projetos</h1>
+  <img  src="{% static 'img/gif_home.gif' %}" alt="">
+ </div>
 {% endblock %}

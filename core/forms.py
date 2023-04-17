@@ -9,6 +9,10 @@ class UserForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'})
         }
+        labels = {
+            'name': 'Nome',
+            'email': 'Email'
+        }
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -20,14 +24,21 @@ class ProjectForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-control'}),
             'setor': forms.Select(attrs={'class': 'form-control'}),
         }
+        labels = {
+            'name': 'Nome',
+            'descricao': 'Descrição',
+            'status': 'Status',
+            'setor': 'Setor'
+        }
 
 class AssociateForm(forms.ModelForm):
 
-    project = forms.ModelChoiceField(queryset=Project.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
-    users = forms.ModelMultipleChoiceField(queryset=User.objects.all(), widget=forms.CheckboxSelectMultiple())
+    project = forms.ModelChoiceField(queryset=Project.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}), label='Projeto')
+    users = forms.ModelMultipleChoiceField(queryset=User.objects.all(), widget=forms.CheckboxSelectMultiple(), label='Usuários')
     class Meta:
         model = Project
         fields = ['project', 'users']
+        
     def clean(self):
         cleaned_data = super().clean()
         project = cleaned_data.get('project')

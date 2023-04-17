@@ -2,22 +2,21 @@
 {% block title %}Detalhes dos Projetos{% endblock title %}
 {% block content %}
   <h1 class="text-center">Lista de Projetos</h1>
-  <table class="table">
-    <thead>
+  <table class="table table-striped">
+    <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Projeto</th>
         <th scope="col">Descrição</th>
         <th scope="col">Status</th>
         <th scope="col">Setor</th>
         <th scope="col">Usuários</th>
         <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
       </tr>
     </thead>
     <tbody>
       {% for project in projects %}
       <tr>
-        <th scope="row">{{ project.id }}</th>
         <td>{{ project.name }}</td>
         <td>{{project.descricao}}</td>
           <td>{{project.status}}</td>

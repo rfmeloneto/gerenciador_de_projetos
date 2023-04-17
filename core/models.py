@@ -27,6 +27,5 @@ class Project(models.Model):
     
     def add_user(self, user):
         self.users.add(user)
-        if self.users.count() > 5:
-            raise ValidationError('Um projeto não pode ter mais de 5 usuários.')
+        
 
