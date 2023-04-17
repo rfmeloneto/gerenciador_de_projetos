@@ -85,30 +85,10 @@ class UserListAPIView(generics.ListAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
-class UserSearchAPIView(generics.ListAPIView):
-    serializer_class = UserSerializer
-
-    def get_queryset(self):
-        queryset = User.objects.all()
-        name = self.request.query_params.get('name', None)
-        email = self.request.query_params.get('email', None)
-        if name:
-            queryset = queryset.filter(name__icontains=name)
-        if email:
-            queryset = queryset.filter(email__icontains=email)
-        return queryset
 
 class ProjectListAPIView(generics.ListAPIView):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
 
-class ProjectSearchAPIView(generics.ListAPIView):
-    serializer_class = ProjectSerializer
 
-    def get_queryset(self):
-        queryset = Project.objects.all()
-        name = self.request.query_params.get('name', None)
-        if name:
-            queryset = queryset.filter(name__icontains=name)
-        return queryset
 

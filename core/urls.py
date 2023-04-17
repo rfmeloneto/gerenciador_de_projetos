@@ -15,7 +15,5 @@ urlpatterns = [
 
     # API URLs
     path('api/user/list/', views.UserListAPIView.as_view(), name='api_user_list'),
-    path('api/user/search/', views.UserSearchAPIView.as_view(), name='api_user_search'),
     path('api/project/list/', views.ProjectListAPIView.as_view(), name='api_project_list'),
-    path('api/project/search/', views.ProjectSearchAPIView.as_view(), name='api_project_search'),
 ]
